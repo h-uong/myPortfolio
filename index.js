@@ -107,40 +107,34 @@ document.addEventListener("DOMContentLoaded", () => {
 const section = document.querySelector('.stack-section');
 const cards = document.querySelectorAll('.card');
 
-// use matchMedia (more stable than innerWidth)
-const desktopQuery = window.matchMedia("(min-width: 769px)");
-
-function initCardsAnimation() {
-
-  // 🔒 MOBILE: fully disable EVERYTHING
-  if (!desktopQuery.matches) {
-    cards.forEach(card => {
-      card.style.transform = "none";
-      card.style.zIndex = "";
-    });
-    return; // 🚨 nothing else runs
-  }
-
-  // 🚫 If no section/cards → do nothing
-  if (!section || cards.length === 0) return;
+if (section && cards.length > 0) {
 
   let ticking = false;
   let displayedProgress = 0;
   let currentProgress = 0;
   let hoverTimeout = null;
 
-  // --- Helpers ---
-  const clamp = (v, min, max) => Math.max(min, Math.min(v, max));
+  const isMobile = () => window.innerWidth <= 768;
 
-  const easeInOutCubic = (t) =>
-    t < 0.5
+  // --- Helpers ---
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(value, max));
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5
       ? 4 * t * t * t
       : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
 
-  const lerp = (a, b, t) => a + (b - a) * t;
+  function lerp(start, end, amount) {
+    return start + (end - start) * amount;
+  }
 
   // --- Animate cards ---
   function animateCards(progress) {
+    if (isMobile()) return;
+
     const vw = window.innerWidth;
 
     let spreadMultiplier = 1;
@@ -171,6 +165,8 @@ function initCardsAnimation() {
 
   // --- Scroll animation ---
   function updateAnimation() {
+    if (isMobile()) return;
+
     const rect = section.getBoundingClientRect();
     let rawProgress = 0;
 
@@ -198,20 +194,32 @@ function initCardsAnimation() {
     ticking = false;
   }
 
-  function onScroll() {
+  // ✅ ONLY attach scroll on desktop
+  function handleScroll() {
     if (!ticking) {
       requestAnimationFrame(updateAnimation);
       ticking = true;
     }
   }
 
-  // ✅ attach scroll ONLY once
-  window.addEventListener("scroll", onScroll, { passive: true });
+  // attach ONLY on desktop
+  if (window.matchMedia("(min-width: 769px)").matches) {
+    window.addEventListener("scroll", handleScroll);
+  }
 
-  // --- Hover ---
+  // --- Hover / focus ---
   function activateCard(index) {
+    if (isMobile()) return;
+
     cards.forEach(c => c.classList.remove("active-focus"));
     cards[index].classList.add("active-focus");
+
+    const vw = window.innerWidth;
+
+    let hoverMultiplier = 1;
+    if (vw < 1400) hoverMultiplier = 1.3;
+    if (vw < 1200) hoverMultiplier = 1.6;
+    if (vw < 992)  hoverMultiplier = 2;
 
     const compressionAmount = 25 * displayedProgress;
 
@@ -219,14 +227,24 @@ function initCardsAnimation() {
       const base = other.dataset.baseTransform || "";
 
       if (i === index) {
+        let extraX = 0;
+
+        if (index === 3 || index === 4) {
+          const baseExtra = 60;
+          extraX = index === 3
+            ? baseExtra * hoverMultiplier
+            : -baseExtra * hoverMultiplier;
+        }
+
         other.style.transform =
-          `${base} translateY(-25px) scale(${1 + 0.05 * displayedProgress})`;
+          `${base} translateX(${extraX}px) translateY(-25px) scale(${1 + 0.05 * displayedProgress})`;
         other.style.zIndex = 20;
+
       } else {
         const direction = i < index ? -1 : 1;
 
         other.style.transform =
-          `${base} translateX(${direction * compressionAmount}px) scale(${0.95})`;
+          `${base} translateX(${direction * compressionAmount}px) scale(${0.95 - 0.03 * displayedProgress})`;
         other.style.zIndex = 5;
       }
     });
@@ -235,11 +253,12 @@ function initCardsAnimation() {
   function resetCards() {
     cards.forEach(c => {
       c.classList.remove("active-focus");
-      c.style.transform = c.dataset.baseTransform || "";
       c.style.zIndex = "";
+      c.style.transform = c.dataset.baseTransform || "";
     });
   }
 
+  // --- Event listeners ---
   cards.forEach((card, index) => {
     card.addEventListener("mouseenter", () => {
       hoverTimeout = setTimeout(() => activateCard(index), 120);
@@ -249,21 +268,23 @@ function initCardsAnimation() {
       clearTimeout(hoverTimeout);
       resetCards();
     });
+
+    card.addEventListener("focus", () => activateCard(index));
+    card.addEventListener("blur", resetCards);
   });
 
-  // --- Resize ---
+  // --- Resize handling ---
   window.addEventListener("resize", () => {
-    if (!desktopQuery.matches) {
-      cards.forEach(card => {
-        card.style.transform = "none";
+    if (isMobile()) {
+      cards.forEach((card, i) => {
+        card.style.transform = "translateX(0px) scale(1)";
+        card.style.zIndex = i === 4 ? 10 : "";
       });
     } else {
       animateCards(currentProgress);
     }
   });
 
+  // --- Initial setup ---
   animateCards(0);
 }
-
-// 🚀 RUN
-initCardsAnimation();
