@@ -255,6 +255,7 @@ Sticky Scroll
 
   .stack-section {
     height: auto;
+    transform: none;
   }
 
   .stack-sticky {

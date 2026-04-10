@@ -101,21 +101,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ---------------------------
-// SCROLL CARDS ANIMATION
+// SCROLL CARDS ANIMATION 
 // ---------------------------
 
 const section = document.querySelector('.stack-section');
 const cards = document.querySelectorAll('.card');
 
-// 🔒 HARD STOP on mobile (prevents jitter completely)
-if (window.innerWidth <= 768) {
-  if (cards.length > 0) {
+// use matchMedia (more stable than innerWidth)
+const desktopQuery = window.matchMedia("(min-width: 769px)");
+
+function initCardsAnimation() {
+
+  // 🔒 MOBILE: fully disable EVERYTHING
+  if (!desktopQuery.matches) {
     cards.forEach(card => {
       card.style.transform = "none";
       card.style.zIndex = "";
     });
+    return; // 🚨 nothing else runs
   }
-} else if (section && cards.length > 0) {
+
+  // 🚫 If no section/cards → do nothing
+  if (!section || cards.length === 0) return;
 
   let ticking = false;
   let displayedProgress = 0;
@@ -123,19 +130,14 @@ if (window.innerWidth <= 768) {
   let hoverTimeout = null;
 
   // --- Helpers ---
-  function clamp(value, min, max) {
-    return Math.max(min, Math.min(value, max));
-  }
+  const clamp = (v, min, max) => Math.max(min, Math.min(v, max));
 
-  function easeInOutCubic(t) {
-    return t < 0.5
+  const easeInOutCubic = (t) =>
+    t < 0.5
       ? 4 * t * t * t
       : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
 
-  function lerp(start, end, amount) {
-    return start + (end - start) * amount;
-  }
+  const lerp = (a, b, t) => a + (b - a) * t;
 
   // --- Animate cards ---
   function animateCards(progress) {
@@ -196,25 +198,20 @@ if (window.innerWidth <= 768) {
     ticking = false;
   }
 
-  // ✅ ONLY ONE scroll listener (desktop only)
-  window.addEventListener("scroll", () => {
+  function onScroll() {
     if (!ticking) {
       requestAnimationFrame(updateAnimation);
       ticking = true;
     }
-  });
+  }
 
-  // --- Hover / focus ---
+  // ✅ attach scroll ONLY once
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // --- Hover ---
   function activateCard(index) {
     cards.forEach(c => c.classList.remove("active-focus"));
     cards[index].classList.add("active-focus");
-
-    const vw = window.innerWidth;
-
-    let hoverMultiplier = 1;
-    if (vw < 1400) hoverMultiplier = 1.3;
-    if (vw < 1200) hoverMultiplier = 1.6;
-    if (vw < 992)  hoverMultiplier = 2;
 
     const compressionAmount = 25 * displayedProgress;
 
@@ -222,24 +219,14 @@ if (window.innerWidth <= 768) {
       const base = other.dataset.baseTransform || "";
 
       if (i === index) {
-        let extraX = 0;
-
-        if (index === 3 || index === 4) {
-          const baseExtra = 60;
-          extraX = index === 3
-            ? baseExtra * hoverMultiplier
-            : -baseExtra * hoverMultiplier;
-        }
-
         other.style.transform =
-          `${base} translateX(${extraX}px) translateY(-25px) scale(${1 + 0.05 * displayedProgress})`;
+          `${base} translateY(-25px) scale(${1 + 0.05 * displayedProgress})`;
         other.style.zIndex = 20;
-
       } else {
         const direction = i < index ? -1 : 1;
 
         other.style.transform =
-          `${base} translateX(${direction * compressionAmount}px) scale(${0.95 - 0.03 * displayedProgress})`;
+          `${base} translateX(${direction * compressionAmount}px) scale(${0.95})`;
         other.style.zIndex = 5;
       }
     });
@@ -248,12 +235,11 @@ if (window.innerWidth <= 768) {
   function resetCards() {
     cards.forEach(c => {
       c.classList.remove("active-focus");
-      c.style.zIndex = "";
       c.style.transform = c.dataset.baseTransform || "";
+      c.style.zIndex = "";
     });
   }
 
-  // --- Event listeners ---
   cards.forEach((card, index) => {
     card.addEventListener("mouseenter", () => {
       hoverTimeout = setTimeout(() => activateCard(index), 120);
@@ -263,14 +249,11 @@ if (window.innerWidth <= 768) {
       clearTimeout(hoverTimeout);
       resetCards();
     });
-
-    card.addEventListener("focus", () => activateCard(index));
-    card.addEventListener("blur", resetCards);
   });
 
-  // --- Resize handling ---
+  // --- Resize ---
   window.addEventListener("resize", () => {
-    if (window.innerWidth <= 768) {
+    if (!desktopQuery.matches) {
       cards.forEach(card => {
         card.style.transform = "none";
       });
@@ -279,6 +262,8 @@ if (window.innerWidth <= 768) {
     }
   });
 
-  // --- Initial state ---
   animateCards(0);
 }
+
+// 🚀 RUN
+initCardsAnimation();
