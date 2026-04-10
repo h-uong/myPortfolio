@@ -126,13 +126,13 @@ function updateAnimation(){
   if(rect.top <=0 && rect.bottom >= window.innerHeight){
     const scrollRange = section.offsetHeight - window.innerHeight;
     rawProgress = -rect.top / scrollRange;
-  } else if(rect.bottom < window.innerHeight){
+  } else if(rect.bottom < window.innerHeight *2){
     rawProgress = 1;
   }
 
   rawProgress = clamp(rawProgress,0,1);
 
-  const expandPhase = 0.75;
+  const expandPhase = 1;
   const mappedProgress = rawProgress <= expandPhase ? rawProgress/expandPhase : 1;
   const eased = easeInOutCubic(mappedProgress);
 

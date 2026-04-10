@@ -165,17 +165,19 @@ Sticky Scroll
 
 /* STACK SECTION */
 .stack-section {
-  height: 220vh;
+  height: 250vh;
   height: auto;
   position: relative;
   margin-top: 0;
   padding-top: 0;
+  margin-bottom: 3rem;
+  
 }
 
 .stack-sticky {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 80vh;
 
   display: flex;
   align-items: center;
@@ -229,7 +231,7 @@ Sticky Scroll
 .card p {
   position: relative;
   z-index: 2;
-  padding: 0 1.5rem 1rem 1.5rem;
+  padding: 1rem 1.5rem;
   color: #222222;
 
   text-align:center;
