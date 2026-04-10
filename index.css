@@ -165,7 +165,8 @@ Sticky Scroll
 
 /* STACK SECTION */
 .stack-section {
-  height: 300vh;
+  height: 220vh;
+  height: auto;
   position: relative;
   margin-top: 0;
   padding-top: 0;
