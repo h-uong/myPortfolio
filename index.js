@@ -1,4 +1,4 @@
-const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
 const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -18,7 +18,6 @@ if (toggle && menu) {
 // ---------------------------
 // TYPEWRITER / REVEAL
 // ---------------------------
-
 
   const reveals = document.querySelectorAll(".type-reveal");
 
@@ -101,20 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ---------------------------
-// SCROLL CARDS ANIMATION 
+// SCROLL CARDS ANIMATION
 // ---------------------------
 
 const section = document.querySelector('.stack-section');
 const cards = document.querySelectorAll('.card');
-
-if (window.innerWidth <= 768) {
-  // kill all transforms on mobile
-  cards.forEach(card => {
-    card.style.transform = "none";
-    card.style.zIndex = "";
-  });
-  return;
-}
 
 if (section && cards.length > 0) {
 
@@ -204,16 +194,13 @@ if (section && cards.length > 0) {
   }
 
   // ✅ ONLY attach scroll on desktop
-  function handleScroll() {
-    if (!ticking) {
-      requestAnimationFrame(updateAnimation);
-      ticking = true;
-    }
-  }
-
-  // attach ONLY on desktop
-  if (window.matchMedia("(min-width: 769px)").matches) {
-    window.addEventListener("scroll", handleScroll);
+  if (!isMobile()) {
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(updateAnimation);
+        ticking = true;
+      }
+    });
   }
 
   // --- Hover / focus ---
