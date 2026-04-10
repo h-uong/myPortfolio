@@ -107,6 +107,15 @@ document.addEventListener("DOMContentLoaded", () => {
 const section = document.querySelector('.stack-section');
 const cards = document.querySelectorAll('.card');
 
+if (window.innerWidth <= 768) {
+  // kill all transforms on mobile
+  cards.forEach(card => {
+    card.style.transform = "none";
+    card.style.zIndex = "";
+  });
+  return;
+}
+
 if (section && cards.length > 0) {
 
   let ticking = false;
