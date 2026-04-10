@@ -271,9 +271,11 @@ Sticky Scroll
     height: 250px;
 
     transform: none !important;
+    transition: none !important;
   }
-  
 }
+
+
 
 /* =============== 
 PROJECTS - CONTEXT SECTION

@@ -107,14 +107,20 @@ document.addEventListener("DOMContentLoaded", () => {
 const section = document.querySelector('.stack-section');
 const cards = document.querySelectorAll('.card');
 
-if (section && cards.length > 0) {
+// 🔒 HARD STOP on mobile (prevents jitter completely)
+if (window.innerWidth <= 768) {
+  if (cards.length > 0) {
+    cards.forEach(card => {
+      card.style.transform = "none";
+      card.style.zIndex = "";
+    });
+  }
+} else if (section && cards.length > 0) {
 
   let ticking = false;
   let displayedProgress = 0;
   let currentProgress = 0;
   let hoverTimeout = null;
-
-  const isMobile = () => window.innerWidth <= 768;
 
   // --- Helpers ---
   function clamp(value, min, max) {
@@ -133,8 +139,6 @@ if (section && cards.length > 0) {
 
   // --- Animate cards ---
   function animateCards(progress) {
-    if (isMobile()) return;
-
     const vw = window.innerWidth;
 
     let spreadMultiplier = 1;
@@ -165,8 +169,6 @@ if (section && cards.length > 0) {
 
   // --- Scroll animation ---
   function updateAnimation() {
-    if (isMobile()) return;
-
     const rect = section.getBoundingClientRect();
     let rawProgress = 0;
 
@@ -194,20 +196,16 @@ if (section && cards.length > 0) {
     ticking = false;
   }
 
-  // ONLY attach scroll on desktop
-  if (!isMobile()) {
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        requestAnimationFrame(updateAnimation);
-        ticking = true;
-      }
-    });
-  }
+  // ✅ ONLY ONE scroll listener (desktop only)
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(updateAnimation);
+      ticking = true;
+    }
+  });
 
   // --- Hover / focus ---
   function activateCard(index) {
-    if (isMobile()) return;
-
     cards.forEach(c => c.classList.remove("active-focus"));
     cards[index].classList.add("active-focus");
 
@@ -272,16 +270,15 @@ if (section && cards.length > 0) {
 
   // --- Resize handling ---
   window.addEventListener("resize", () => {
-    if (isMobile()) {
-      cards.forEach((card, i) => {
-        card.style.transform = "translateX(0px) scale(1)";
-        card.style.zIndex = i === 4 ? 10 : "";
+    if (window.innerWidth <= 768) {
+      cards.forEach(card => {
+        card.style.transform = "none";
       });
     } else {
       animateCards(currentProgress);
     }
   });
 
-  // --- Initial setup ---
+  // --- Initial state ---
   animateCards(0);
 }
