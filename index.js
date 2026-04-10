@@ -186,6 +186,16 @@ if (section && cards.length > 0) {
 
 }
 
+// MOBILE
+if (window.innerWidth > 768 && section && cards.length > 0) {
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateAnimation);
+      ticking = true;
+    }
+  });
+}
+
 // --- Hover / focus ---
 function activateCard(index){
   const isMobile = window.innerWidth <= 768;

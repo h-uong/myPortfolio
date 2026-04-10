@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <title>Huong Vu — Designer | Frontend Developer</title>
   <link rel="stylesheet" href="index.css" />
 </head>
-<body id="#top">
+<body id="top">
 
+  <!-- TOP NAV -->
   <nav class="top-nav">
     <div class="nav-inner">
-
       <a href="index.html" class="logo">
         <img src="HVLogo_sm.svg" alt="Huong Vu - Home">
       </a>
-
+      <button class="menu-toggle" id="menu-toggle">☰</button>
       <ul class="nav-links">
         <li><a href="index.html#projects">Work</a></li>
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
-
     </div>
   </nav>
 
-
-
+  <!-- HERO -->
   <header class="hero">
     <h1 class="type-reveal">
       <span class="base-text">Explorations — Motion, Interactive & Social</span>
@@ -37,7 +37,8 @@
     </p>
   </header>
 
-  <section class="context-section">
+  <!-- SECTION -->
+  <section class="context-section container">
     <div class="context-content">
       <h2 class="section-title">1. Motion Design (Adobe After Effects)</h2>
       <p class="context-text">
@@ -50,26 +51,24 @@
     </div>
   </section>
   
-  <section class="p5-content">
-      <div class="frame-1">
-          <img src="./project-five/croqui_sketch.svg" class="img">
-          <img src="./project-five/croqui_analysis.svg" class="img">
-          <img src="./project-five/croqui_frames.svg" class="img">
-      
-          <img src="./project-five/Croqui_Character_1.1.gif" class="img">
+  <section class="container end-space">
+      <div class="suze-container">
+          <img src="./project-five/croqui_ska.svg" class="suze-sm">
+          <img src="./project-five/croqui_frames.svg" class="suze-sm">
+          <img src="./project-five/Croqui_Character_1.1.gif" class="suze-sm">
       </div>
 
       <div class="content">
           <img src="./project-five/croqui_develop.svg">
       </div>
 
-      <div class="xframe2">
-          <img src="./project-five/Croqui_Character_2.2.gif">
-          <img src="./project-five/croqui_joints.svg" >
+      <div class="suze-container">
+          <img src="./project-five/Croqui_Character_2.2.gif" class="suze-lg">
+          <img src="./project-five/croqui_joints.svg" class="suze-lg">
       </div>
   </section>
 
-  <section class="context-section">
+  <section class="context-section container">
     <div class="context-content">
       <h2 class="section-title">2. Interactive Design (Meme Generator)</h2>
       <p class="context-text">
@@ -81,14 +80,14 @@
     </div>
   </section>
 
-  <section class="p5-content">
+  <section class="container space-up">
     <div class="content">
-      <img src="./project-five/meme_develop.svg" class="img_90">
+      <img src="./project-five/meme_develop.svg">
     </div>
   </section>
 
 
-  <section class="last">
+  <section class="container end-space">
     <h2 class="section-title">3. Social Content (Designbound Instagram)</h2>
 
     <p>A collection of social media designs created to explore visual consistency, content structure, and audience engagement through short-form content.     
@@ -103,28 +102,38 @@
 
 
   <!-- SIDE NAVS -->
-  <div class="left-nav">
-    <a href="project-three.html" class="left" aria-label="go back to HOME Page"></a>
+  <div class="side-nav">
+    <div class="left-nav">
+      <a href="project-three.html" class="left" aria-label="go back to HOME Page"></a>
+    </div>
+
+    <div class="right-nav">
+      <a href="project-one.html" class="right" aria-label="go to Next Project"></a>
+    </div>
   </div>
 
-
-  <div class="right-nav">
-    <a href="project-one.html" class="right" aria-label="go to Next Project"></a>
-  </div>
-
+  <!-- BACK TO TOP -->
   <div class="back-to-top">
     <a class="top" href="#top">Back to top</a>
   </div>
 
+
   <!-- FOOTER -->
   <footer id="contact">
-    <h2>Let's build something thoughtful.</h2>
-    <div class="xfooter">
-      <P>© 2026 Huong Vu</P>
-      <a href="mailto:hello.hvu@gmail.com">Email Me</a>
-      <a href="https://github.com/h-uong" class="img-link">
-        <img src="github-fill.svg" alt="GitHub Page" class="footer-icon">
-      </a>
+    <div class="container footer-inner">
+      <h2>Let's build something thoughtful.</h2>
+
+      <div class="footer-links">
+        <a href="#top"><p>© 2026 Huong Vu</p></a>
+        <div class="img-link">
+          <a href="mailto:hello.hvu@gmail.com">
+            <img src="email_icon.svg" alt="Email Huong" class="footer-icon">
+          </a>
+          <a href="https://github.com/h-uong" target="_blank">
+            <img src="github-fill.svg" alt="GitHub Page" class="footer-icon">
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 

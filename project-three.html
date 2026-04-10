@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <title>Huong Vu — Designer | Frontend Developer</title>
   <link rel="stylesheet" href="index.css" />
 </head>
-<body id="#top">
+<body id="top">
 
   <nav class="top-nav">
     <div class="nav-inner">
@@ -14,7 +16,7 @@
       <a href="index.html" class="logo">
         <img src="HVLogo_sm.svg" alt="Huong Vu - Home">
       </a>
-
+      <button class="menu-toggle" id="menu-toggle">☰</button>
       <ul class="nav-links">
         <li><a href="index.html#projects">Work</a></li>
         <li><a href="index.html#about">About</a></li>
@@ -44,7 +46,7 @@
 
   </header>
 
-  <section class="context-section">
+  <section class="context-section container">
     <div class="context-content">
       <h2 class="section-title">Context</h2>
       <p class="context-text">
@@ -58,7 +60,7 @@
   </section>
 
 
-  <section>
+  <section class="container">
     <h2 class="section-title">Problem</h2>
 
     <p>Design presentations can often feel overwhelming or unclear, especially for clients without a design background.  Common challenges include:</p>
@@ -71,7 +73,7 @@
   </section>
 
 
-  <section>
+  <section class="container">
     <h2 class="section-title">Approach</h2>
 
     <p>I developed a structured presentation system that guides clients through the design in a clear, logical, and visually engaging way.  The focus was to balance <span class="make-bold">technical clarity with storytelling</span>, ensuring clients not only understand the design but feel confident in it.</p>
@@ -86,7 +88,7 @@
 
   </section>
 
-  <section>
+  <section class="container">
     <h2 class="section-title">Presentation Design System</h2>
 
     <p>The deck was built as a repeatable system to support multiple projects.  This system ensures efficiency while maintaining a high level of polish.</p>
@@ -113,7 +115,7 @@
 
   </section>
 
-    <section>
+    <section class="container">
     <h2 class="section-title">Content & Visualization</h2>
 
     <p>The presentation combines multiple layers of information to support decision-making. Each element is designed to reduce ambiguity and improve client understanding:</p>
@@ -133,7 +135,7 @@
   </section>
 
 
-  <section class="last">
+  <section class="container end-space">
     <h2 class="section-title">Outcome</h2>
 
     <p>The final design presentation details the iterations from the concept presentation to capture the clients functional needs.  This project reinforced the importance of designing not just for aesthetics, but for understanding.  By structuring information clearly and supporting it with visuals, the presentation becomes a tool for alignment, and a blueprint for execution.</p> 
@@ -155,28 +157,37 @@
 
 
   <!-- SIDE NAVS -->
-  <div class="left-nav">
-    <a href="project-four.html" class="left" aria-label="go back to HOME Page"></a>
+  <div class="side-nav">
+    <div class="left-nav">
+      <a href="project-four.html" class="left" aria-label="go back to HOME Page"></a>
+    </div>
+
+    <div class="right-nav">
+      <a href="project-five.html" class="right" aria-label="go to Next Project"></a>
+    </div>
   </div>
 
-
-  <div class="right-nav">
-    <a href="project-five.html" class="right" aria-label="go to Next Project"></a>
-  </div>
-
+  <!-- BACK TO TOP -->
   <div class="back-to-top">
     <a class="top" href="#top">Back to top</a>
   </div>
 
-  <!-- FOOTER -->
+    <!-- FOOTER -->
   <footer id="contact">
-    <h2>Let's build something thoughtful.</h2>
-    <div class="xfooter">
-      <P>© 2026 Huong Vu</P>
-      <a href="mailto:hello.hvu@gmail.com">Email Me</a>
-      <a href="https://github.com/h-uong" class="img-link">
-        <img src="github-fill.svg" alt="GitHub Page" class="footer-icon">
-      </a>
+    <div class="container footer-inner">
+      <h2>Let's build something thoughtful.</h2>
+
+      <div class="footer-links">
+        <a href="#top"><p>© 2026 Huong Vu</p></a>
+        <div class="img-link">
+          <a href="mailto:hello.hvu@gmail.com">
+            <img src="email_icon.svg" alt="Email Huong" class="footer-icon">
+          </a>
+          <a href="https://github.com/h-uong" target="_blank">
+            <img src="github-fill.svg" alt="GitHub Page" class="footer-icon">
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 

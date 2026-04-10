@@ -2,20 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Knewave&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
   <title>Huong Vu — Designer | Frontend Developer</title>
   <link rel="stylesheet" href="index.css" />
 </head>
-<body id="#top">
+<body id="top">
 
+  <!-- TOP NAVIGATION -->
   <nav class="top-nav">
     <div class="nav-inner">
       
       <a href="index.html" class="logo">
         <img src="HVLogo_sm.svg" alt="Huong Vu - Home">
       </a>
-
-      <ul class="nav-links">
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <ul class="nav-links" id="nav-menu">
         <li><a href="index.html#projects">Work</a></li>
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#contact">Contact</a></li>
@@ -24,13 +31,13 @@
     </div>
   </nav>
 
-
+  <!-- HERO -->
   <header class="hero">
     <h1 class="type-reveal">
       <span class="base-text">CIBC Run for the Cure — Campaign Experience</span>
       <span class="fill-text">CIBC Run for the Cure — Campaign Experience</span>
     </h1>
-
+    
     <p class="hero-subtext">
       A scroll-driven storytelling experience to increase engagement and drive participation
     </p>
@@ -44,7 +51,8 @@
     </div>
   </header>
 
-  <section class="context-section">
+  <!-- CONTEXT -->
+  <section class="context-section container">
     <div class="context-content">
       <h2 class="section-title">Context</h2>
       <p class="context-text">
@@ -54,22 +62,23 @@
 
     <div class="context-image">
       <div class="runner">
-          <img id="runnerImg" src="./project-one/runningman00.svg" />
+        <img src="./project-one/runningman00.svg" id="runnerImg"/>
       </div>
 
       <img src="./project-one/run_brand.png">
     </div>
   </section>
 
-  <section>
+  <!-- PROBLEM -->
+  <section class="container">
     <h2 class="section-title">Problem</h2>
 
     <p>Many campaign pages rely on static layouts and dense information, making it difficult to capture attention or sustain engagement.</p>
     
   </section>
 
-
-  <section>
+  <!-- APPROACH -->
+  <section class="container">
     <h2 class="section-title">Approach</h2>
 
     <p>I designed a horizontally scrolling landing experience that mirrors the journey of a run—progressive, continuous, and purpose-driven.  The concept reframes the page as a guided story, where users move through moments of awareness, impact, and participation.</p>
@@ -97,18 +106,18 @@
 
     <div class="typography">
       <div>
-        <p class="font-poppins-HH">Sans-serif</p>
-        <p>Hero Heading</p>
+        <p class="font-poppins-HH">Heading</p>
+        <p>Sans-serif</p>
         <p>Bold 56px </p>
       </div>
       <div>
-        <p class="font-poppins-SH">Sans-serif</p>
-        <p>Section Heading</p>
+        <p class="font-poppins-SH">Subheading</p>
+        <p>Sans-serif</p>
         <p>Bold 38px</p>
       </div>
       <div>
-        <p class="font-inter">Inter</p>
-        <p>Body text</p>
+        <p class="font-inter">Body Text</p>
+        <p>Inter</p>
         <p>Regular 36px</p>
       </div>
     </div>
@@ -176,7 +185,8 @@
 
   </section>
 
-  <section>
+  <!-- WORKFLOW -->
+  <section class="container">
     <h2 class="section-title">AI-Assisted Workflow (Wireframe)</h2>
 
     <p>AI tools were integrated throughout the design process to accelerate ideation and iteration. <br>CHATGPT PROMPT: 'sketch figma wireframe layout (section by section)'</p>
@@ -192,7 +202,8 @@
 
   </section>
 
-  <section>
+  <!-- OUTCOME -->
+  <section class="container">
     <h2 class="section-title">Outcome</h2>
 
     <p>The final concept demonstrates how interactive storytelling can transform a traditional campaign page into a more engaging, action-driven experience - reinforcing the importance of designing motion with purpose to support the narrative and guide user behavior.  <a href="https://campaignrun.netlify.app/" class="cta" target="_blank">View Campaign Experience</a></p> 
@@ -213,8 +224,8 @@
     </div>
   </section>
 
-
-  <section class="last">
+  <!-- NEXT STEPS -->
+  <section class="container end-space">
     <h2 class="section-title">Next Steps</h2>
 
     <p>With further development, the experience could be expanded through:</p> 
@@ -229,28 +240,37 @@
 
 
   <!-- SIDE NAVS -->
-  <div class="left-nav">
-    <a href="index.html" class="left" aria-label="go back to HOME Page"></a>
+  <div class="side-nav">
+    <div class="left-nav">
+      <a href="index.html" class="left" aria-label="go back to HOME Page"></a>
+    </div>
+
+    <div class="right-nav">
+      <a href="project-two.html" class="right" aria-label="go to Next Project"></a>
+    </div>
   </div>
 
-
-  <div class="right-nav">
-    <a href="project-two.html" class="right" aria-label="go to Next Project"></a>
-  </div>
-
+  <!-- BACK TO TOP -->
   <div class="back-to-top">
     <a class="top" href="#top">Back to top</a>
   </div>
 
   <!-- FOOTER -->
   <footer id="contact">
-    <h2>Let's build something thoughtful.</h2>
-    <div class="xfooter">
-      <P>© 2026 Huong Vu</P>
-      <a href="mailto:hello.hvu@gmail.com">Email Me</a>
-      <a href="https://github.com/h-uong" class="img-link">
-        <img src="github-fill.svg" alt="GitHub Page" class="footer-icon">
-      </a>
+    <div class="container footer-inner">
+      <h2>Let's build something thoughtful.</h2>
+
+      <div class="footer-links">
+        <a href="#top"><p>© 2026 Huong Vu</p></a>
+        <div class="img-link">
+          <a href="mailto:hello.hvu@gmail.com">
+            <img src="email_icon.svg" alt="Email Huong" class="footer-icon">
+          </a>
+          <a href="https://github.com/h-uong" target="_blank">
+            <img src="github-fill.svg" alt="GitHub Page" class="footer-icon">
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 
