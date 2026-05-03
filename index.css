@@ -275,7 +275,7 @@ Sticky Scroll
 
   .card {
     position: relative;
-    width: 65%;
+    width: 100%;
     height: 250px;
 
     transform: none !important;
@@ -399,6 +399,11 @@ ABOUT SECTION
     position: absolute;
     bottom: -50%;
   }
+
+  .about-name {
+    display: block;
+    white-space: normal;
+  }
 }
 
 .about-name-wrap {
@@ -410,7 +415,7 @@ ABOUT SECTION
   position: absolute;
   
   font-size: 3rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #b8b63c;
   
   z-index: 3;
@@ -419,6 +424,8 @@ ABOUT SECTION
   white-space: nowrap;
 
   animation: moveSide 3s ease-in-out infinite alternate;
+
+  text-shadow: 3px 3px 5px rgba(0,0,0,0.3);
 }
 
 /* 🎯 animation */
@@ -820,6 +827,87 @@ footer a:hover img {
   opacity: 0.85;
 }
 /* ===============
+=============== */
+
+/* =============== 
+PROJECT SAAS
+=============== */
+
+.button-Search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+
+    padding: 15px 20px;
+    height: 3.125rem;
+    width: 10rem;
+    background-color: #ffffff;
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4F46E5;
+    text-decoration: none;
+    border-radius: 25px;
+    border: 2px solid #4F46E5;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+    margin-bottom: 1rem;
+}
+
+.icon {
+  height: 1.8rem;
+}
+
+.button-Trial {
+    padding: 15px 20px;
+    height: 50px;
+    width: 140px;
+    background-color: #FF5400;
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.button-Demo {
+    padding: 15px 20px;
+    height: 50px;
+    width: 140px;
+    background-color: #FFBD00;
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    border-radius: 25px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* FONT STYLE */
+.font-baloo-38b {
+    font-family: "Baloo Da 2";
+    font-size: 2.375rem;
+    font-weight: 700;
+  }
+
+  .font-inter-24b {
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .font-inter-16sb {
+    font-family: inter;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+/* =============== 
+PROJECT SAAS
 =============== */
 
 
