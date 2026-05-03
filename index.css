@@ -1640,6 +1640,13 @@ PROJECT FOUR
   box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
 }
 
+@media (max-width: 768px) {
+  .process-grid2 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, .75fr));
+  justify-content: center;
+  }
+}
+
 /* ===== PROJECT-FOUR OUTCOME VISUAL MOCKUP ===== */
 .social-post {
   max-width: 900px;
