@@ -835,6 +835,7 @@ PROJECT SAAS
 
 .button-Search {
     display: flex;
+    align-content: center;
     align-items: center;
     justify-content: center;
     gap: 3rem;
@@ -857,6 +858,12 @@ PROJECT SAAS
 
 .icon {
   height: 1.8rem;
+}
+
+@media (max-width: 768px) {
+  .button-Search  {
+    margin: 0 auto 1rem auto;            
+  }
 }
 
 .button-Trial {
@@ -1670,7 +1677,7 @@ PROJECT FOUR
 .phone {
   position: relative;
   grid-row: span 2; /* 🔥 takes full height */
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
 
   transform: scale(1.25);
